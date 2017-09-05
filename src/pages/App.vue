@@ -8,8 +8,8 @@
 
         <p class="title">{{ d }}</p>
         <ul>
-            <li><a href="/pages/contact.html">contact</a></li>
-            <li><a href="/pages/home.html">home</a></li>
+            <li><a href="pages/contact.html">contact</a></li>
+            <li><a href="pages/home.html">home</a></li>
         </ul>
     </div>
 </template>

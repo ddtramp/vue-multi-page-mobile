@@ -11,8 +11,7 @@
         "gray": "node build/gray.js",
         "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
         "test": "npm run unit",
-        "lint": "eslint --ext .js,.vue src test/unit/specs",
-        "postinstall": "npm run build && cordova prepare"
+        "lint": "eslint --ext .js,.vue src test/unit/specs"
     },
     "dependencies": {
         "axios": "^0.16.2",
@@ -22,7 +21,6 @@
         "vuex": "^2.4.0"
     },
     "devDependencies": {
-        "cordova": "^7.0.1",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-whitelist": "^1.3.2",
         "autoprefixer": "^7.1.2",
