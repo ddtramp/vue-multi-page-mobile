@@ -140,9 +140,8 @@ if (config.build.bundleAnalyzerReport) {
 /**
  **  multi-pages config
  */
-
 function getEntry(globPath) {
-    let entries = {},
+    var entries = {},
         basename, tmp, pathname;
     if (typeof (globPath) != "object") {
         globPath = [globPath]
@@ -150,31 +149,30 @@ function getEntry(globPath) {
     globPath.forEach((itemPath) => {
         glob.sync(itemPath).forEach(function (entry) {
             basename = path.basename(entry, path.extname(entry));
-            console.log(entry)
             if (entry.split('/').length > 4) {
                 tmp = entry.split('/').splice(-3);
                 pathname = tmp[0] + '/' + tmp[1] // 正确输出js和html的路径
                 entries[pathname] = entry;
             } else {
-                entries[basename.split('_')[0]] = entry;
+                entries[basename] = entry;
             }
         });
     });
     return entries;
 }
 
-let pages = getEntry(['./src/pages/*_dev.html', './src/pages/*/*_prod.html']);
+var pages = getEntry(['./src/pages/*.html','./src/pages/*/*.html']);
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
-    let conf = {
+    var conf = {
         filename: pathname + '.html',
         template: pages[pathname],   // 模板路径
         inject: true,              // js插入位置
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeAttributeQuotes: true
-        },
+        // minify: {
+            // removeComments: true,
+            // collapseWhitespace: true,
+            // removeAttributeQuotes: true
+        // },
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin
         chunksSortMode: 'dependency'
     };
@@ -186,5 +184,6 @@ for (let pathname in pages) {
 
     webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
+webpackConfig.resolve.alias.vue$ = 'vue/dist/vue.runtime.esm.js'
 
 module.exports = webpackConfig

@@ -50,12 +50,6 @@ module.exports = {
         },
         symlinks: false
     },
-    // CDN load
-    externals: {
-        'vue': 'window.Vue',
-        'vuex': 'window.Vuex',
-        'vue-router': 'window.VueRouter',
-    },
     module: {
         rules: [
             {

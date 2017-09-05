@@ -1,5 +1,11 @@
 <template>
     <div id="app">
+        <h1>Apache Cordova</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+
         <p class="title">{{ d }}</p>
         <ul>
             <li><a href="/pages/contact.html">contact</a></li>
@@ -8,6 +14,7 @@
     </div>
 </template>
 <style lang="scss" scoped>
+
     .title { text-align: center; }
     ul {
         list-style-type: none;

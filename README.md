@@ -39,4 +39,23 @@ at .js or .vue file, you can use `envConfig` variable, such as:
     let environment = envConfig.development
     console.log(environment)    
 
+## cordova test 
+
+    /
+        hooks/
+        platforms/
+        plugins/
+        res/
+        .npmignore
+        config.xml
+  
+[see](https://stackoverflow.com/questions/22310526/cordova-start-specific-ios-emulator-image)  
+    
+    cd  platform/ios/cordova/node_modules/
+    rm -R ios-sim
+    npm install ios-sim@5.1.0
+    
+    cordova emulate ios --list      // availble devices
+    cordova emulate ios --target="iPhone-7-Plus"    // this is work
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
