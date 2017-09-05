@@ -21,12 +21,6 @@
     @import './../../../utils/variable.scss';
 
     .test-class {
-        font-size: $font-size;
-        [data-dpr="2"] & {
-            font-size: $font-size * 2;
-        }
-        [data-dpr="3"] & {
-            font-size: $font-size * 3;
-        }
+        @include font-size(12px)
     }
 </style>
