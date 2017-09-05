@@ -59,7 +59,7 @@ function getEntry(globPath) {
                 pathname = tmp[0] + '/' + tmp[1] // 正确输出js和html的路径
                 entries[pathname] = entry;
             } else {
-                entries[basename] = entry;
+                entries[basename.split('_')[0]] = entry;
             }
         });
     });
@@ -67,7 +67,6 @@ function getEntry(globPath) {
 }
 
 var pages = getEntry(['./src/pages/*_dev.html','./src/pages/*/*_dev.html']);
-
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
     var conf = {

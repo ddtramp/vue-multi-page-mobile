@@ -34,7 +34,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     },
     plugins: [
         // clean dist folder
-        new CleanWebpackPlugin(['dist'], {
+        new CleanWebpackPlugin(['www'], {
             "root": resolve(''),
             "verbose": true
         }),
@@ -155,7 +155,7 @@ function getEntry(globPath) {
                 pathname = tmp[0] + '/' + tmp[1] // 正确输出js和html的路径
                 entries[pathname] = entry;
             } else {
-                entries[basename] = entry;
+                entries[basename.split('_')[0]] = entry;
             }
         });
     });
@@ -185,5 +185,7 @@ for (let pathname in pages) {
 
     webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
+
+delete webpackConfig.entry.index
 
 module.exports = webpackConfig
