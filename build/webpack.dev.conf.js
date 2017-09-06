@@ -69,8 +69,10 @@ function getEntry(globPath) {
 var pages = getEntry(['./src/pages/*.html','./src/pages/*/*.html']);
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
+    let name = pathname.split('/')
+
     var conf = {
-        filename: pathname + '.html',
+        filename: (name.length === 1 ? pathname  : name[1]) + '.html' ,
         template: pages[pathname],   // 模板路径
         inject: true,              // js插入位置
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin

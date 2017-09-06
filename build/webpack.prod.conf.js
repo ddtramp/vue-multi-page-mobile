@@ -23,7 +23,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
-            extract: true
+            extract: false
         })
     },
     devtool: config.build.productionSourceMap ? '#source-map' : false,
@@ -50,17 +50,17 @@ let webpackConfig = merge(baseWebpackConfig, {
             },
             sourceMap: true
         }),
-        // extract css into its own file
-        new ExtractTextPlugin({
-            filename: utils.assetsPath('css/[name].[contenthash].css')
-        }),
-        // Compress extracted CSS. We are using this plugin so that possible
-        // duplicated CSS from different components can be deduped.
-        new OptimizeCSSPlugin({
-            cssProcessorOptions: {
-                safe: true
-            }
-        }),
+        // // extract css into its own file
+        // new ExtractTextPlugin({
+        //     filename: utils.assetsPath('css/[name].[contenthash].css')
+        // }),
+        // // Compress extracted CSS. We are using this plugin so that possible
+        // // duplicated CSS from different components can be deduped.
+        // new OptimizeCSSPlugin({
+        //     cssProcessorOptions: {
+        //         safe: true
+        //     }
+        // }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
@@ -165,8 +165,10 @@ function getEntry(globPath) {
 let pages = getEntry(['./src/pages/*/*.html']);
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
+    let name = pathname.split('/')
+
     let conf = {
-        filename: pathname + '.html',
+        filename: (name.length === 1 ? pathname  : name[1]) + '.html' ,
         template: pages[pathname],   // 模板路径
         inject: true,              // js插入位置
         minify: {

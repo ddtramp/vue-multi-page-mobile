@@ -1,5 +1,7 @@
 <template>
-    <div id="app">
+    <div id="app" v-cloak>
+        <h1>lalala...</h1>
+        <p>666</p>
         <img src="../../assets/logo.png">
         <Test></Test>
         <router-view></router-view>
@@ -17,6 +19,8 @@
 </script>
 
 <style>
+    [v-cloak] { display: none; }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;

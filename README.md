@@ -58,7 +58,13 @@ at .js or .vue file, you can use `envConfig` variable, such as:
     npm run build && cordova prepare
 
     cordova emulate ios --list      // availble devices
-    cordova emulate ios --target="iPhone-7-Plus"    // this is work
+    cordova emulate ios --target="iPhone-7-Plus"    
 
+
+## Notice
+
+do not use 异步组件 import("")
+           
+use 内联 style
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
