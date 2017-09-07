@@ -6,9 +6,9 @@ let merge = require('webpack-merge')
 let baseWebpackConfig = require('./webpack.base.conf')
 let CopyWebpackPlugin = require('copy-webpack-plugin')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
+// let ExtractTextPlugin  = require('extract-text-webpack-plugin')
 let CleanWebpackPlugin = require('clean-webpack-plugin')
-let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+// let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 let glob = require("glob")
 
 function resolve(dir) {
@@ -23,7 +23,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
-            extract: true
+            extract: false
         })
     },
     devtool: config.build.productionSourceMap ? '#source-map' : false,
@@ -34,7 +34,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     },
     plugins: [
         // clean dist folder
-        new CleanWebpackPlugin(['dist'], {
+        new CleanWebpackPlugin(['www'], {
             "root": resolve(''),
             "verbose": true
         }),
@@ -51,16 +51,16 @@ let webpackConfig = merge(baseWebpackConfig, {
             sourceMap: true
         }),
         // extract css into its own file
-        new ExtractTextPlugin({
-            filename: utils.assetsPath('css/[name].[contenthash].css')
-        }),
-        // Compress extracted CSS. We are using this plugin so that possible
-        // duplicated CSS from different components can be deduped.
-        new OptimizeCSSPlugin({
-            cssProcessorOptions: {
-                safe: true
-            }
-        }),
+        // new ExtractTextPlugin({
+        //     filename: utils.assetsPath('css/[name].[contenthash].css')
+        // }),
+        // // Compress extracted CSS. We are using this plugin so that possible
+        // // duplicated CSS from different components can be deduped.
+        // new OptimizeCSSPlugin({
+        //     cssProcessorOptions: {
+        //         safe: true
+        //     }
+        // }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
@@ -140,9 +140,8 @@ if (config.build.bundleAnalyzerReport) {
 /**
  **  multi-pages config
  */
-
 function getEntry(globPath) {
-    let entries = {},
+    var entries = {},
         basename, tmp, pathname;
     if (typeof (globPath) != "object") {
         globPath = [globPath]
@@ -162,18 +161,19 @@ function getEntry(globPath) {
     return entries;
 }
 
-let pages = getEntry(['./src/pages/*_prod.html', './src/pages/*/*_prod.html']);
+var pages = getEntry(['./src/pages/*.html','./src/pages/*/*.html']);
 for (let pathname in pages) {
     // 配置生成的html文件，定义路径等
-    let conf = {
-        filename: pathname + '.html',
+    let name = pathname.split('/')
+    var conf = {
+        filename: (name.length === 1 ? pathname  : name[1]) + '.html' ,
         template: pages[pathname],   // 模板路径
         inject: true,              // js插入位置
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeAttributeQuotes: true
-        },
+        // minify: {
+            // removeComments: true,
+            // collapseWhitespace: true,
+            // removeAttributeQuotes: true
+        // },
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin
         chunksSortMode: 'dependency'
     };
@@ -185,5 +185,6 @@ for (let pathname in pages) {
 
     webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
+webpackConfig.resolve.alias.vue$ = 'vue/dist/vue.runtime.esm.js'
 
 module.exports = webpackConfig

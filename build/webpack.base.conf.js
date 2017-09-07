@@ -22,18 +22,17 @@ function getEntry(globPath) {
     globPath.forEach((itemPath) => {
         glob.sync(itemPath).forEach(function (entry) {
             basename = path.basename(entry, path.extname(entry));
-            if (entry.split('/').length > 4) {
+            if ((/\w+\/pages\/\w+\/\w+\.js/).test(entry)) {
                 tmp = entry.split('/').splice(-3);
                 pathname = tmp[0] + '/' + tmp[1]; // 正确输出js和html的路径
                 entries[pathname] = entry;
             } else {
-                entries[basename] = entry;
+                entries['index'] = entry;
             }
         });
     });
     return entries;
 }
-
 module.exports = {
     entry: entries,
     output: {
@@ -50,12 +49,6 @@ module.exports = {
             '@': resolve('src'),
         },
         symlinks: false
-    },
-    // CDN load
-    externals: {
-        'vue': 'window.Vue',
-        'vuex': 'window.Vuex',
-        'vue-router': 'window.VueRouter',
     },
     module: {
         rules: [

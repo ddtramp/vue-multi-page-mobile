@@ -17,6 +17,8 @@
             <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
             <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
         </ul>
+
+        <a href="javascript:window.history.back()">back</a>
     </div>
 </template>
 
@@ -37,7 +39,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
     h1, h2 {
         font-weight: normal;
     }

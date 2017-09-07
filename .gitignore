@@ -12,3 +12,6 @@ test/unit/coverage
 *.njsproj
 *.sln
 yzd-Hybrid-app.iml
+platforms/
+plugins/
+res/

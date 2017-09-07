@@ -1,1 +1,11 @@
 $font-size: 12px;
+
+@mixin font-size ( $size: 12px) {
+    font-size: $size;
+    [data-dpr="2"] & {
+        font-size: $size * 2;
+    }
+    [data-dpr="3"] & {
+        font-size: $size * 3;
+    }
+}
