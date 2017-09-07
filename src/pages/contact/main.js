@@ -4,11 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/index'
 
-if (envConfig.environment === 'production') {  // global config variable
+if (envConfig.environment === 'production') { // global config variable
     Vue.config.productionTip = false
 }
+console.log('home')
 
-console.log('contact')
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
