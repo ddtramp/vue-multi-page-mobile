@@ -72,7 +72,7 @@ Gradle config
     
     change at location /platforms/android/gradle/../
     
-    1  先下载gradle-2.2.1-all.zip包。 
+    1  先下载gradle-3.3-all.zip包。 
     2. 把下载好的zip包放到{project.dir}\gradle\wrapper目录下（也就是跟gradle-wrapper.properties同一个目录）
     3. 修改{project.dir}\gradle\wrapper\gradle-wrapper.properties文件。如下：
         # change this line
