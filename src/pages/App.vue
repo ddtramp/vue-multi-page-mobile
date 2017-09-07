@@ -32,6 +32,8 @@
         <f7-views>
             <!-- Main view-->
             <f7-view main navbar-through toolbar-fixed>
+
+
                 <!-- For iOS theme we use navbar-through layout so the navbar should be a child of the View -->
                 <f7-navbar v-if="$theme.ios" title="Awesome App"></f7-navbar>
                 <f7-pages navbar-fixed toolbar-fixed>
@@ -40,7 +42,17 @@
                         <f7-navbar v-if="$theme.material" title="Awesome App"></f7-navbar>
                         <!-- Page content -->
                         <f7-block>
-                            <p>Here comes main view page text</p>
+                            <h1>Apache Cordova</h1>
+                            <div id="deviceready" class="blink">
+                                <p class="event listening">Connecting to Device</p>
+                                <p class="event received">Device is Ready</p>
+                            </div>
+
+                            <p class="title">{{ d }}</p>
+                            <ul>
+                                <li><f7-link href="contact.html" external>contact</f7-link></li>
+                                <li><f7-link href="home.html" external>home</f7-link></li>
+                            </ul>
                         </f7-block>
                         <!-- Buttons to open panels -->
                         <f7-grid>
@@ -75,23 +87,17 @@
                 </f7-pages>
             </f7-view>
         </f7-popup>
-
-
-        <h1>Apache Cordova</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
-
-        <p class="title">{{ d }}</p>
-        <ul>
-            <li><a href="contact.html">contact</a></li>
-            <li><a href="home.html">home</a></li>
-        </ul>
     </div>
 </template>
 <style lang="scss" scoped>
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #2c3e50;
+    }
     [v-cloak] { display: none; }
+
     .title { text-align: center; }
     ul {
         list-style-type: none;
@@ -111,12 +117,3 @@
     }
 </script>
 
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-</style>

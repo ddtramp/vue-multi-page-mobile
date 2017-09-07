@@ -33,7 +33,9 @@ new Vue({
     render: h => h(App),
     framework7: {
         root: '#app',
-        routes: []
+        routes: [],
+        animateNavBackIcon: true,
+        swipePanel: 'left'
     },
     data: function () {
         return {
