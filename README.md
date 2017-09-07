@@ -26,7 +26,7 @@ yarn test
 ## test on virsual device
 yarn run gray
 cordova run --list
-cordova run ios --emulate --target="iPhone-7"
+cordova emulate ios --target="iPhone-7"
 cordova run android --emulate --target="Nexus_6_API_25"
 ```
 
